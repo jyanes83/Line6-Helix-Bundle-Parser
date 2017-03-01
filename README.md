@@ -3,7 +3,7 @@ Python based Line 6 Helix Bundle file parser,  creates individual .HLX preset fi
 
 You will need python installed
 
-Make sure to play the helixbundleparser.py in the same directory of your .HLB file (Helix Bundle).  
+Make sure to edit the helixbundleparser.py in the same directory of your .HLB file (Helix Bundle).  
 
 Edit helixbundleparser.py and replace Feb.hlb with the name of your file. 
 
