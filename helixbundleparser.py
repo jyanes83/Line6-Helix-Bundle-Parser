@@ -3,12 +3,14 @@ import json
 from pprint import pprint
 import base64
 import zlib
+import string
 
 data = None
 compress_data = None
 data_bundle = None
 c=0
 dataout = {}
+valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
 
 #Replace Feb.hlb with the name of your Helix bundle file.  Must be in root directory of where the python script is located
 with open('Feb.hlb') as file_bundle:
@@ -24,8 +26,9 @@ if 'encoded_data' in data:
 				if 'meta' in tone:
 					presetname = tone['meta']['name']
 					filename = presetname + "_" + str(c) + ".hlx"
-					#print c
-					with open(filename, 'w') as outfile:
+                                        safe_filename = ''.join(c for c in filename if c in valid_chars)
+					print "Writing %s" % safe_filename
+					with open(safe_filename, 'w') as outfile:
 						dataout['version'] = 6
 						dataout['data'] = tone
 						dataout['schema'] = "L6Preset"
@@ -33,5 +36,3 @@ if 'encoded_data' in data:
 					c += 1 
 					
 			
-
-
